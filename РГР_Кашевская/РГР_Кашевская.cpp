@@ -13,7 +13,7 @@ int main()
     cout << "3) RSA" << endl;
     cout << "4) VIGENERE" << endl;
     cout << "5) HILL" << endl;
-    cout << "Write number of cipher:  "; 
+    cout << "Write number of cipher: "; 
     cin >> number;
     switch (number)  // switch/case дяя номеров шифров
     {

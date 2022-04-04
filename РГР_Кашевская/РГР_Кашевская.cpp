@@ -2,8 +2,27 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+
+#define FILE_NAME ""
 using namespace std;
 enum CIPHER { NOTEBOOK = 0, VERNAM = 1, CAESAR = 2, RSA = 3, VIGENERE = 4, HILL = 5 };
+
+vector<int> find_symbol(vector<vector <char>> key, char symbol)
+{
+    vector<int> value;
+        for (int i = 0 ; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (key[i][j] == symbol)
+                {
+                    value.push_back(i);
+                    value.push_back(j);
+                }
+            }
+        }
+        return value;
+}
 
 int main()
 {
@@ -33,10 +52,9 @@ int main()
             for (vector <char> element : vec_alp)
             {
                 random_shuffle(element.begin(), element.end());
-                for (char symbol : element)
-                    cout << symbol;
-                cout << endl;
             }
+            for (int element: find_symbol(vec_alp, 'a'))
+                cout << element;
             break;
         }
         case VERNAM :  

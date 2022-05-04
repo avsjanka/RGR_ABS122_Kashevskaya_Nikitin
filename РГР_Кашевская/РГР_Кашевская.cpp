@@ -1,47 +1,78 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <locale>
 #include <vector>
 using namespace std;
 enum CIPHER { NOTEBOOK = 0, VERNAM = 1, CAESAR = 2, RSA = 3, VIGENERE = 4, HILL = 5 };
 
-char rus_encrypt(char letter)
+char encrypt_symb(char letter, char key_letter)
 {
-    char encrypted_letter = 'M';
-    return encrypted_letter;
-}
-
-char eng_encrypt(char letter)
-{
-    char encrypted_letter = 'И';
-    return encrypted_letter;
-}
-
-void vigenere(const string message, const string key)
-{
-    setlocale(LC_ALL, "Ru");//32 - 126 Eng  -64 - -1 Рус
-    vector<char> encrypt_mes, full_key(message.size());
-    if (message.size() <= key.size())
+    string vigLine = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя .,_=+?><;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    int numOfLet = vigLine.find_first_of(letter);
+    int numOfKeyLine = vigLine.find_first_of(key_letter);
+    if (numOfLet == string::npos || numOfKeyLine == string::npos)
     {
-        for(int i = 0, k = 0; i <)
+        return '$';
     }
+    string keyLine = vigLine.substr(numOfKeyLine) + vigLine.substr(0, numOfKeyLine);
+    return keyLine[numOfLet];
+}
+char decrypt_symb(char encrletter, char key_letter)
+{
+    string vigLine = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя .,_=+?><;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    int numOfKeyLine = vigLine.find_first_of(key_letter);
+    if (numOfKeyLine == string::npos)
+    {
+        return '$';
+    }
+    string keyLine = vigLine.substr(numOfKeyLine) + vigLine.substr(0, numOfKeyLine);
+    int numOfLet = keyLine.find_first_of(encrletter);
+    return vigLine[numOfLet];
+}
+void vigenere(const string& message, const string& key)
+{
+    setlocale(LC_ALL, "Ru");
+    vector<char> encrypt_mes, full_key, decrypt_mes;
+    int i = 0;
+    cout << "Entered message:" << endl;
     for (char letter : message)
     {
-        if (int(letter) > 31 && int(letter) < 127)
-        {
-            encrypt_mes.push_back(eng_encrypt(letter));
-        }
-        else if (int(letter) > -63 && int(letter) < 0)
-        {
-            encrypt_mes.push_back(rus_encrypt(letter));
-        }
+        cout << letter;
     }
+    while (full_key.size() < message.size())//Формирование полного ключа
+    {
+        if (i == key.size())
+        {
+            i = 0;
+        }
+        full_key.push_back(key[i]);
+        i++;
+    }
+    i = 0;
+    for (char letter : message)//Шифровка текста посимвольно
+    {
+        encrypt_mes.push_back(encrypt_symb(letter, full_key[i]));
+        i++;
+    }
+    cout << endl << "Encrypted message:" << endl;
     for (char letter : encrypt_mes)
     {
         cout << letter;
     }
+    cout << endl;
+    i = 0;
+    for (char letter : encrypt_mes)//Дешифровка побуквенно
+    {
+        decrypt_mes.push_back(decrypt_symb(letter, full_key[i]));
+        i++;
+    }
+    cout << "Decrypted message:" << endl;
+    for (char letter : decrypt_mes)
+    {
+        cout << letter;
+    }
 }
+
 
 
 int main()
@@ -78,7 +109,7 @@ int main()
         }
         case VIGENERE :
         {
-            vigenere("stringытппыктп", "key");
+            vigenere("stringg,gj,h.fg.kg.ofyit7cyjhjvh,.c7vhctlvglctulvgcltyvh.g ,jkcutlyvhj g", "key");
             break;
         }
         case HILL :

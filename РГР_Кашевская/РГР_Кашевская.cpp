@@ -2,6 +2,7 @@
 #include <string>
 #include <locale>
 #include <vector>
+#include <cmath>
 using namespace std;
 enum CIPHER { NOTEBOOK = 0, VERNAM = 1, CAESAR = 2, RSA = 3, VIGENERE = 4, HILL = 5 };
 
@@ -10,7 +11,7 @@ char encrypt_symb(char letter, char key_letter)
     string vigLine = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя .,_=+?><;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     int numOfLet = vigLine.find_first_of(letter);
     int numOfKeyLine = vigLine.find_first_of(key_letter);
-    if (numOfLet == string::npos || numOfKeyLine == string::npos)
+    if (numOfLet == string::npos || numOfKeyLine == string::npos)//Если не нашли какую-то из букв, то шифруем как '$'
     {
         return '$';
     }
@@ -72,8 +73,31 @@ void vigenere(const string& message, const string& key)
         cout << letter;
     }
 }
-
-
+void hill(const string& message, const string& key)
+{
+    string alphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя .,_=+?><;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string keyLast = key;
+    int numOfMatrix = sqrt(key.length()), i = 0, j = 0, numOfBlocks = message.length() / numOfMatrix + 1;
+    vector<vector<int>> keyMatrix(numOfMatrix), mesMatrix(numOfBlocks);
+    if (pow(numOfMatrix, 2) != key.length())
+    {
+        keyLast = key.substr(0, pow(numOfMatrix, 2));
+    }
+    for (char letter : keyLast)
+    {
+        if (i != numOfMatrix)
+        {
+            keyMatrix[j].push_back(alphabet.find_first_of(letter));
+            i++;
+        }
+        else
+        {
+            i = 0;
+            j++;
+            keyMatrix[j].push_back(alphabet.find_first_of(letter));
+        }
+    }
+}
 
 int main()
 {
@@ -114,6 +138,7 @@ int main()
         }
         case HILL :
         {
+            hill("stringg,gj,h.fg.kg.ofyit7cyjhjvh,.c7vhctlvglctulvgcltyvh.g ,jkcutlyvhj g", "keys");
             break;
         }
         default :

@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="caesar_crypt.cpp" />
+    <ClCompile Include="ceasar_decrypt.cpp" />
+    <ClCompile Include="notebook_crypt.cpp" />
+    <ClCompile Include="remaind_of_div.cpp" />
     <ClCompile Include="РГР_Кашевская.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="caesar_crypt.h" />
+    <ClInclude Include="ceasar_decrypt.h" />
+    <ClInclude Include="notebook_crypt.h" />
+    <ClInclude Include="remaind_of_div.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

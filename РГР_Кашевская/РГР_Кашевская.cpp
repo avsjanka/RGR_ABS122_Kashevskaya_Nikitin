@@ -10,12 +10,11 @@
 #include <Windows.h>
 #include "remaind_of_div.h"
 #include "notebook_crypt.h"
-
 #include "caesar_crypt.h"
 #include "ceasar_decrypt.h"
 #define FILE_NAME "C:\\Users\\пользователь\\Desktop\\РГР.txt"
 using namespace std;
-enum CIPHER { NOTEBOOK = 0, VERNAM = 1, CAESAR = 2, RSA = 3, VIGENERE = 4, HILL = 5 };
+enum CIPHER { NOTEBOOK = 0, VERNAM , CAESAR , RSA , VIGENERE , HILL };
 
 vector<char> vernam_key(int length)
 {

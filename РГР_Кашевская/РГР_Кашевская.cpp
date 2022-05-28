@@ -37,7 +37,7 @@ int main()
         {
             break;
         }
-        case RSA ://5760509, 9624859
+        case RSA :
         {
             rsa("strgnlsbjnkaef73920bnsv01odq=-avjd@е#%^ЛПКМТВГЛЫИМД ФОшокма", 101, 59);
             break;

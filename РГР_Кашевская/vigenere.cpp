@@ -1,4 +1,10 @@
 #include "vigenere.h"
+ostream& operator<<(ostream& stream, vector<char>& f) {//перегрузка оператора вывода вектора 
+    for (char& item : f) {
+        stream << item;
+    }
+    return stream;
+}
 char encrypt_symb(char letter, char key_letter)
 {
     string vigLine = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя .,_=+?><;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -32,11 +38,7 @@ int vigenere(const string& message, const string& key)
         cout << "Please, enter key with length more than 0." << endl;
         return 0;
     }
-    cout << "Entered message:" << endl;
-    for (char letter : message)
-    {
-        cout << letter;
-    }
+    cout << "Entered message:" << endl << message << endl;
     while (full_key.size() < message.size())//Формирование полного ключа
     {
         if (i == key.size())
@@ -52,22 +54,13 @@ int vigenere(const string& message, const string& key)
         encrypt_mes.push_back(encrypt_symb(letter, full_key[i]));
         i++;
     }
-    cout << endl << "Encrypted message:" << endl;
-    for (char letter : encrypt_mes)
-    {
-        cout << letter;
-    }
-    cout << endl;
+    cout << "Encrypted message:" << endl << encrypt_mes << endl;
     i = 0;
     for (char letter : encrypt_mes)//Дешифровка побуквенно
     {
         decrypt_mes.push_back(decrypt_symb(letter, full_key[i]));
         i++;
     }
-    cout << "Decrypted message:" << endl;
-    for (char letter : decrypt_mes)
-    {
-        cout << letter;
-    }
+    cout << "Decrypted message:" << endl << decrypt_mes << endl;
     return 0;
 }

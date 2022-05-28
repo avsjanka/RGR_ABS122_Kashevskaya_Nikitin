@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="hill.cpp" />
+    <ClCompile Include="remaind_of_div.cpp" />
+    <ClCompile Include="rsa.cpp" />
+    <ClCompile Include="vigenere.cpp" />
     <ClCompile Include="РГР_Кашевская.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hill.h" />
+    <ClInclude Include="remaind_of_div.h" />
+    <ClInclude Include="rsa.h" />
+    <ClInclude Include="vigenere.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

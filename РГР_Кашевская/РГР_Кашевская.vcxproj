@@ -142,6 +142,7 @@
     <ClCompile Include="caesar_crypt.cpp" />
     <ClCompile Include="ceasar_decrypt.cpp" />
     <ClCompile Include="notebook_crypt.cpp" />
+    <ClCompile Include="notebook_encrypt.cpp" />
     <ClCompile Include="remaind_of_div.cpp" />
     <ClCompile Include="РГР_Кашевская.cpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="caesar_crypt.h" />
     <ClInclude Include="ceasar_decrypt.h" />
     <ClInclude Include="notebook_crypt.h" />
+    <ClInclude Include="notebook_encrypt.h" />
     <ClInclude Include="remaind_of_div.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

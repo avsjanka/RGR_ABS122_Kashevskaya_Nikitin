@@ -10,22 +10,13 @@
 #include <Windows.h>
 #include "remaind_of_div.h"
 #include "notebook_crypt.h"
+#include "vernam_key.h"
 #include "caesar_crypt.h"
 #include "ceasar_decrypt.h"
 #define FILE_NAME "C:\\Users\\пользователь\\Desktop\\РГР.txt"
 using namespace std;
 enum CIPHER { NOTEBOOK = 0, VERNAM , CAESAR , RSA , VIGENERE , HILL };
 
-vector<char> vernam_key(int length)
-{
-    vector<char> key ;
-    for (int i = 0; i <= length; i++)
-    {
-
-        key.push_back('0'+rand() % 2);
-    }
-    return key;
-}
 
 
 int main()
@@ -84,7 +75,8 @@ int main()
         }
         case VERNAM :  
         {
-            vector <char> key = vernam_key(((int) letter.size()) * 8);
+            vector <int> key = vernam_key(((int) letter.size()));
+            //vector<char> result = vernam_crypt(letter);
             break;
         }
         case CAESAR :

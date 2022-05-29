@@ -30,6 +30,9 @@
     <ClCompile Include="remaind_of_div.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="notebook_encrypt.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="caesar_crypt.h">
@@ -42,6 +45,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="remaind_of_div.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="notebook_encrypt.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

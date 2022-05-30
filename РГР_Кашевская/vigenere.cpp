@@ -55,6 +55,13 @@ int vigenere(const string& message, const string& key)
         i++;
     }
     cout << "Encrypted message:" << endl << encrypt_mes << endl;
+    cout << "Do you want to decrypt this? Please, input 0, if you don't want and 1, if you want: ";
+    bool isDecr;
+    cin >> isDecr;
+    if (!isDecr)
+    {
+        return 0;
+    }
     i = 0;
     for (char letter : encrypt_mes)//Дешифровка побуквенно
     {

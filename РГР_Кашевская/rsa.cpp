@@ -5,25 +5,7 @@ ostream& operator<<(ostream& stream, vector<int>& f) {//перегрузка оператора выв
     }
     return stream;
 }
-int euler_func(int n)
-{
-    int result = n;
-    for (int i = 2; i * i <= n; ++i)
-        if (n % i == 0) {
-            while (n % i == 0)
-                n /= i;
-            result -= result / i;
-        }
-    if (n > 1)
-        result -= result / n;
-    return result;
-}
-int big_rem(int a, int x, int p)
-{
-    int r = 0;
-    r = x % euler_func(p);
-    return remaind_of_div(a, r, p);
-}
+
 int multi_rev(int a, int b)
 {
     int r = 0, u = 0, v = 0, q = 0;
@@ -57,6 +39,13 @@ int rsa(const string& message, int p, int q)
     }
     cout << "Encrypted message:" << endl;
     cout << encr_mes << endl;
+    cout << "Do you want to decrypt this? Please, input 0, if you don't want and 1, if you want: ";
+    bool isDecr;
+    cin >> isDecr;
+    if (!isDecr)
+    {
+        return 0;
+    }
     for (int letter : encr_lets)
     {
         decr_mes.push_back(alphabet[big_rem(letter, d, n)]);

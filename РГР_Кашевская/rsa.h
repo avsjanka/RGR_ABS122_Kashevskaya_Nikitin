@@ -5,5 +5,6 @@
 #include <vector>
 #include <cmath>
 #include "remaind_of_div.h"
+#include "big_rem.h"
 using namespace std;
 int rsa(const string& message, int p, int q);

@@ -30,6 +30,9 @@
     <ClCompile Include="remaind_of_div.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="big_rem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vigenere.h">
@@ -42,6 +45,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="remaind_of_div.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="big_rem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

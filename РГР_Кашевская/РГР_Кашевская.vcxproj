@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="big_rem.cpp" />
     <ClCompile Include="hill.cpp" />
     <ClCompile Include="remaind_of_div.cpp" />
     <ClCompile Include="rsa.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="РГР_Кашевская.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="big_rem.h" />
     <ClInclude Include="hill.h" />
     <ClInclude Include="remaind_of_div.h" />
     <ClInclude Include="rsa.h" />

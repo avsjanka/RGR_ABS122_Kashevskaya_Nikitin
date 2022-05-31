@@ -5,4 +5,4 @@
 #include <cmath>
 #include <fstream>
 using namespace std;
-vector<char> notebook_encrypt(vector<char>& crypt_letter, vector<vector <char>>& key);
+vector<char> notebook_decrypt(vector<char>& crypt_letter, vector<vector <char>>& key);

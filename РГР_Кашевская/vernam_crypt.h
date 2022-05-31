@@ -1,7 +1,7 @@
 #pragma once
-#include <ctime>
 #include <random>
+#include <algorithm>
 #include <vector>
 #include <iostream>
 using namespace std;
-vector<int> vernam_key( int size);
+vector<char> vernam_crypt(vector<char>& letter, vector<int>& key);

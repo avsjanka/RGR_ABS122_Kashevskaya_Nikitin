@@ -30,7 +30,19 @@
     <ClCompile Include="remaind_of_div.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="notebook_encrypt.cpp">
+    <ClCompile Include="vernam_key.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="notebook_decrypt.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vernam_crypt.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vernam_decrypt.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="notebook_key.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +59,19 @@
     <ClInclude Include="remaind_of_div.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="notebook_encrypt.h">
+    <ClInclude Include="vernam_key.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="notebook_decrypt.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vernam_crypt.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vernam_decrypt.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="notebook_key.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

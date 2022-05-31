@@ -8,105 +8,126 @@
 #include <cmath>
 #include <fstream>
 #include <Windows.h>
+#include "input_from_file.h"
+#include "print_vector.h"
+#include "vector_to_string.h"
 #include "remaind_of_div.h"
+#include "notebook_key.h"
 #include "notebook_crypt.h"
+#include "notebook_decrypt.h"
 #include "vernam_key.h"
+#include "vernam_crypt.h"
+#include "vernam_decrypt.h"
 #include "caesar_crypt.h"
 #include "ceasar_decrypt.h"
 #define FILE_NAME "C:\\Users\\пользователь\\Desktop\\РГР.txt"
 using namespace std;
-enum CIPHER { NOTEBOOK = 0, VERNAM , CAESAR , RSA , VIGENERE , HILL };
-
-
+enum CIPHER { NOTEBOOK = 1, VERNAM , CAESAR , RSA , VIGENERE , HILL,ALL };
 
 int main()
 {
-    setlocale(LC_ALL, "ru");
-    int number = 0; 
-    int ind = 0;
-    char in_char, out_char;
-    vector<char> letter;
-    cout << "Ciphers that you can use:" << endl;
-    cout << "0) NOTEBOOK" << endl;
-    cout << "1) VERNAM" << endl;
-    cout << "2) CAESAR" << endl;
-    cout << "3) RSA" << endl;
-    cout << "4) VIGENERE" << endl;
-    cout << "5) HILL" << endl;
-    cout << "Write number of cipher ";
-    cin >> number;
-    cout << "Write your letter: " << endl;
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-    ofstream input;
-    input.open(FILE_NAME, ios::out);
-    while (cin >> in_char)        
-        input << in_char;
-    input.close();
-    ifstream output;
-    output.open(FILE_NAME, ios::in);
-    while( output >> out_char)
-        letter.push_back(out_char);
-    output.close();
-    switch (number) 
+    string password;
+    cout << "Write password ";
+    cin >> password;
+    if (password.compare("1111") == 0)
     {
-        case NOTEBOOK :
+        setlocale(LC_ALL, "ru");
+        int number = 0;
+        cout << "Ciphers that you can use:" << endl;
+        cout << "1) NOTEBOOK" << endl;
+        cout << "2) VERNAM" << endl;
+        cout << "3) CAESAR" << endl;
+        cout << "4) RSA" << endl;
+        cout << "5) VIGENERE" << endl;
+        cout << "6) HILL" << endl;
+        cout << "6) All Ciphers by 1 to 6" << endl;
+        cout << "Write number of cipher ";
+        cin >> number;
+        SetConsoleCP(1251);
+        SetConsoleOutputCP(1251);
+        switch (number)
         {
-            char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .0123456789,!?;:()-";
-            vector < vector <char>> vec_alp(10, vector<char>(10));
-            for (int i = 0, k = 0; i<10 ; i++)
+            case NOTEBOOK:
             {
-                for (int j = 0; j < 10; j++)
+                vector<char> letter;
+                int is_gen = 0;
+                cin >> is_gen;
+                if (is_gen == 1)   //Вводим сообщение
                 {
-                    if (alphabet[k] != '\0')
-                        vec_alp[i][j] = alphabet[k];
-                    else
-                        break;
-                    k++;
-                    if (k == 72)
-                        k = 0;
+                    cout << "Write your letter: " << endl;
+                    letter ;
                 }
+                else
+                    letter = input_from_file(number);
+                vector<vector<char>> key = notebook_key();
+                vector <char> result = notebook_crypt(letter, key);
+                print_vector(result);
+                vector <char> result_encrypt = notebook_decrypt(result, key);
+                print_vector(result_encrypt);
+                break;
             }
-            random_shuffle(vec_alp.begin(), vec_alp.end());
-            for (vector <char> element : vec_alp)
-                random_shuffle(element.begin(), element.end());
-            notebook_crypt(letter,vec_alp);
-            break;
-        }
-        case VERNAM :  
-        {
-            vector <int> key = vernam_key(((int) letter.size()));
-            //vector<char> result = vernam_crypt(letter);
-            break;
-        }
-        case CAESAR :
-        {
-            vector<char> result = caesar_crypt(letter);
-            for (char element : result)
-                cout << element;
-            cout << endl;
-            vector<char> decrypt_result = caesar_decrypt(result);
-            for (char element : decrypt_result)
-                cout << element;
-            break;
-        }
-        case RSA :
-        {
-            break;
-        }
-        case VIGENERE:
-        {
-            
-            break;
-        }
-        case HILL:
-        {
-            
-            break;
-        }
-        default :
-            break;
+            case VERNAM:
+            {
+                vector<char> letter;
+                int is_gen = 0;
+                cin >> is_gen;
+                if (is_gen == 1)   //Вводим сообщение
+                {
+                    cout << "Write your letter: " << endl;
+                    letter;
+                }
+                else
+                    letter = input_from_file(number);
+                vector <int> key = vernam_key((static_cast<int> (letter.size())));
+                vector<char> result = vernam_crypt(letter, key);
+                print_vector(result );
+                vector <char> decrypt_result = vernam_decrypt(result, key);
+                print_vector(decrypt_result );
+                break;
+            }
+            case CAESAR:
+            {
+                vector<char> letter;
+                int is_gen = 0;
+                cin >> is_gen;
+                if (is_gen == 1)   //Вводим сообщение
+                {
+                    cout << "Write your letter: " << endl;
+                    letter;
+                }
+                else
+                    letter = input_from_file(number);
+                vector<char> result = caesar_crypt(letter);
+                print_vector(result);
+                vector<char> decrypt_result = caesar_decrypt(result);
+                print_vector(decrypt_result);
+                break;
+            }
+            case RSA:
+            {
+                break;
+            }
+            case VIGENERE:
+            {
 
+                break;
+            }
+            case HILL:
+            {
+
+                break;
+            }
+            case ALL:
+            {
+
+                break;
+            }
+            default:
+                break;
+
+        }
     }
+    else
+        cout << "That password is incorrect!" << endl;
 }
 

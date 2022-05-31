@@ -1,6 +1,6 @@
 #include "vernam_key.h"
 
-vector<int>& vernam_key( int size)
+vector<int> vernam_key( int size)
 {
     mt19937 gen;
     gen.seed(time(0));

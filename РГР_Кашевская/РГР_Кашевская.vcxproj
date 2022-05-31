@@ -141,10 +141,14 @@
   <ItemGroup>
     <ClCompile Include="caesar_crypt.cpp" />
     <ClCompile Include="ceasar_decrypt.cpp" />
+    <ClCompile Include="input_from_file.cpp" />
+    <ClCompile Include="input_string_from_file.cpp" />
     <ClCompile Include="notebook_crypt.cpp" />
     <ClCompile Include="notebook_decrypt.cpp" />
     <ClCompile Include="notebook_key.cpp" />
+    <ClCompile Include="print_vector.cpp" />
     <ClCompile Include="remaind_of_div.cpp" />
+    <ClCompile Include="vector_to_string.cpp" />
     <ClCompile Include="vernam_crypt.cpp" />
     <ClCompile Include="vernam_decrypt.cpp" />
     <ClCompile Include="vernam_key.cpp" />
@@ -153,10 +157,14 @@
   <ItemGroup>
     <ClInclude Include="caesar_crypt.h" />
     <ClInclude Include="ceasar_decrypt.h" />
+    <ClInclude Include="input_from_file.h" />
+    <ClInclude Include="input_string_from_file.h" />
     <ClInclude Include="notebook_crypt.h" />
     <ClInclude Include="notebook_decrypt.h" />
     <ClInclude Include="notebook_key.h" />
+    <ClInclude Include="print_vector.h" />
     <ClInclude Include="remaind_of_div.h" />
+    <ClInclude Include="vector_to_string.h" />
     <ClInclude Include="vernam_crypt.h" />
     <ClInclude Include="vernam_decrypt.h" />
     <ClInclude Include="vernam_key.h" />

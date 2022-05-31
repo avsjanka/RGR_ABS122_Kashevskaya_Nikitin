@@ -2,6 +2,6 @@
 #include <iostream>
 #include <string>
 #include <locale>
-#include <vector>
+#include <Windows.h>
 using namespace std;
-vector<string> vigenere(const string& message, const string& key);
+string input_mes();

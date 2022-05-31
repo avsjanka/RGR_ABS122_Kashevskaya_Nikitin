@@ -22,17 +22,24 @@ int multi_rev(int a, int b)
     }
     return X[1];
 }
-int rsa(const string& message, int p, int q)
+vector<string> rsa(const string& message, int p, int q)
 {
     int n = p * q, phi = (p - 1) * (q - 1), e = 37, d = multi_rev(phi, e), numOfLet = 0;
-    string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?>\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ &.,_=+?>\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     string encr_mes, decr_mes;
     vector<int> code_of_let, encr_lets;
     cout << "Entered message:" << endl;
     cout << message << endl;
     for (int i = 0; i < message.size(); i++)
     {
-        numOfLet = static_cast<int>(alphabet.find_first_of(message[i]));
+        if (alphabet.find_first_of(message[i]) != string::npos)
+        {
+            numOfLet = static_cast<int>(alphabet.find_first_of(message[i]));
+        }
+        if (static_cast<int>(message[i]) == -105)
+        {
+            numOfLet = static_cast<int>(alphabet.find_first_of('-'));
+        }
         code_of_let.push_back(numOfLet);
         encr_lets.push_back(big_rem(numOfLet, e, n));
         encr_mes.push_back(alphabet[remaind_of_div(big_rem(numOfLet, e, n), 1, alphabet.length())]);
@@ -44,7 +51,7 @@ int rsa(const string& message, int p, int q)
     cin >> isDecr;
     if (isDecr != 1)
     {
-        return 0;
+        return { encr_mes, ""};
     }
     for (int letter : encr_lets)
     {
@@ -52,5 +59,5 @@ int rsa(const string& message, int p, int q)
     }
     cout << "Decrypted message:" << endl;
     cout << decr_mes << endl;
-    return 1;
+    return { encr_mes, decr_mes };
 }

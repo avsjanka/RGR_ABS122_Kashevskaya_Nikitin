@@ -179,7 +179,7 @@ vector<vector<int>> alg_dop_matr(vector<vector<int>> keyMatrix, int rank)
     }
     return { {} };
 }
-void decrypt_hill(string alphabet, vector<vector<int>> keyMatrix, int numOfMatrix, string encryptMes)
+string decrypt_hill(string alphabet, vector<vector<int>> keyMatrix, int numOfMatrix, string encryptMes)
 {
     int det_K = determinOfMatrix(keyMatrix, numOfMatrix), rev_det;
     int x = det_rev(det_K, static_cast<int>(alphabet.length()));
@@ -229,7 +229,10 @@ void decrypt_hill(string alphabet, vector<vector<int>> keyMatrix, int numOfMatri
     vector<int> decr_block;
     for (char letter : encryptMes)
     {
-        decr_block.push_back(alphabet.find_first_of(letter));
+        if (alphabet.find_first_of(letter) != string::npos)
+        {
+            decr_block.push_back(alphabet.find_first_of(letter));
+        }
         if (decr_block.size() == 3)
         {
             decr_block = multiMatrix(alg_dop_k, decr_block, static_cast<int>(alg_dop_k.size()));
@@ -242,16 +245,17 @@ void decrypt_hill(string alphabet, vector<vector<int>> keyMatrix, int numOfMatri
         }
     }
     cout << "Decrypted message:" << endl << decrypt_mes << endl;
+    return decrypt_mes;
 }
-int hill(const string& message, const string& key)
+vector<string> hill(const string& message, const string& key)
 {
     if (key.length() == 0)
     {
         cout << "Please, enter key with length more than 0." << endl;
-        return 0;
+        return {};
     }
     cout << "Entered message:" << endl << message << endl;
-    string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ $.,_=+?><;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ &.,_=+?>\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     string keyLast = key, curBlock, encryptMes, newMes = message;
     int numOfMatrix = static_cast<int>(sqrt(key.length())), i = 0, j = 0, numOfBlocks = static_cast<int>((message.length() / numOfMatrix));
     if (numOfBlocks * numOfMatrix < message.length())
@@ -286,9 +290,9 @@ int hill(const string& message, const string& key)
     if (determinOfMatrix(keyMatrix, numOfMatrix) == 0)
     {
         cout << "Please, enter another key." << endl;
-        return 0;
+        return {};
     }
-    for (int str = 0; str < numOfMatrix; str++)
+    for (int str = 0; str < numOfBlocks; str++)
     {
         if (str == numOfMatrix - 1 && message.length() % numOfMatrix != 0)
         {
@@ -326,10 +330,11 @@ int hill(const string& message, const string& key)
     cout << "Encrypted message:" << endl << encryptMes << endl;
     cout << "Do you want to decrypt this? Please, input 1, if you want: ";
     int isDecr;
+    string decr_mes = "";
     cin >> isDecr;
     if (isDecr == 1)
     {
-        decrypt_hill(alphabet, keyMatrix, numOfMatrix, encryptMes);
+        decr_mes = decrypt_hill(alphabet, keyMatrix, numOfMatrix, encryptMes);
     }
-    return 0;
+    return { encryptMes, decr_mes };
 }

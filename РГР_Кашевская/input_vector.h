@@ -3,5 +3,6 @@
 #include <string>
 #include <locale>
 #include <vector>
+#include <Windows.h>
 using namespace std;
-vector<string> vigenere(const string& message, const string& key);
+vector<char> input_vector(int number);

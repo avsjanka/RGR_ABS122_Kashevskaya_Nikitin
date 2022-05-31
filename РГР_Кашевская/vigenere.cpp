@@ -7,7 +7,7 @@ ostream& operator<<(ostream& stream, vector<char>& f) {//ÔÂÂ„ÛÁÍ‡ ÓÔÂ‡ÚÓ‡ ‚˚
 }
 char encrypt_symb(char letter, char key_letter)
 {
-    string vigLine = "¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ .,_=+?>\n;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string vigLine = "¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ &.,_=+?>\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     int numOfLet = static_cast<int>(vigLine.find_first_of(letter));
     int numOfKeyLine = static_cast<int>(vigLine.find_first_of(key_letter));
     if (numOfLet == string::npos || numOfKeyLine == string::npos)//≈ÒÎË ÌÂ Ì‡¯ÎË Í‡ÍÛ˛-ÚÓ ËÁ ·ÛÍ‚, ÚÓ ¯ËÙÛÂÏ Í‡Í '$'
@@ -19,9 +19,9 @@ char encrypt_symb(char letter, char key_letter)
 }
 char decrypt_symb(char encrletter, char key_letter)
 {
-    string vigLine = "¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ .,_=+?>\n;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string vigLine = "¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ &.,_=+?>\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     int numOfKeyLine = static_cast<int>(vigLine.find_first_of(key_letter));
-    if (numOfKeyLine == string::npos)
+    if (numOfKeyLine == string::npos || encrletter == '$')
     {
         return '$';
     }
@@ -29,14 +29,14 @@ char decrypt_symb(char encrletter, char key_letter)
     int numOfLet = static_cast<int>(keyLine.find_first_of(encrletter));
     return vigLine[numOfLet];
 }
-int vigenere(const string& message, const string& key)
+vector<string> vigenere(const string& message, const string& key)
 {
-    vector<char> encrypt_mes, full_key, decrypt_mes;
+    string encrypt_mes, full_key, decrypt_mes;
     int i = 0;
     if (key.length() == 0)
     {
         cout << "Please, enter key with length more than 0." << endl;
-        return 0;
+        return {};
     }
     cout << "Entered message:" << endl << message << endl;
     while (full_key.size() < message.size())//‘ÓÏËÓ‚‡ÌËÂ ÔÓÎÌÓ„Ó ÍÎ˛˜‡
@@ -60,7 +60,7 @@ int vigenere(const string& message, const string& key)
     cin >> isDecr;
     if (isDecr != 1)
     {
-        return 0;
+        return { encrypt_mes , ""};
     }
     i = 0;
     for (char letter : encrypt_mes)//ƒÂ¯ËÙÓ‚Í‡ ÔÓ·ÛÍ‚ÂÌÌÓ
@@ -69,5 +69,5 @@ int vigenere(const string& message, const string& key)
         i++;
     }
     cout << "Decrypted message:" << endl << decrypt_mes << endl;
-    return 0;
+    return { encrypt_mes, decrypt_mes };
 }

@@ -2,6 +2,8 @@
 
 string input_string()
 {
+	setlocale(0, "Ru");
+	srand(time(0));
 	string file_name;
 	int rand_num = rand() % 3;
 	if (rand_num == 0)

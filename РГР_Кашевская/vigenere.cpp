@@ -7,7 +7,7 @@ ostream& operator<<(ostream& stream, vector<char>& f) {//ïåðåãðóçêà îïåðàòîðà âû
 }
 char encrypt_symb(char letter, char key_letter)
 {
-    string vigLine = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?><;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string vigLine = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?>\n;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     int numOfLet = static_cast<int>(vigLine.find_first_of(letter));
     int numOfKeyLine = static_cast<int>(vigLine.find_first_of(key_letter));
     if (numOfLet == string::npos || numOfKeyLine == string::npos)//Åñëè íå íàøëè êàêóþ-òî èç áóêâ, òî øèôðóåì êàê '$'
@@ -19,7 +19,7 @@ char encrypt_symb(char letter, char key_letter)
 }
 char decrypt_symb(char encrletter, char key_letter)
 {
-    string vigLine = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?><;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string vigLine = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?>\n;:/!-*(){}[]&0123456789@#^%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     int numOfKeyLine = static_cast<int>(vigLine.find_first_of(key_letter));
     if (numOfKeyLine == string::npos)
     {
@@ -55,10 +55,10 @@ int vigenere(const string& message, const string& key)
         i++;
     }
     cout << "Encrypted message:" << endl << encrypt_mes << endl;
-    cout << "Do you want to decrypt this? Please, input 0, if you don't want and 1, if you want: ";
-    bool isDecr;
+    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+    int isDecr;
     cin >> isDecr;
-    if (!isDecr)
+    if (isDecr != 1)
     {
         return 0;
     }

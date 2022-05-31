@@ -141,6 +141,8 @@
   <ItemGroup>
     <ClCompile Include="big_rem.cpp" />
     <ClCompile Include="hill.cpp" />
+    <ClCompile Include="input_from_file.cpp" />
+    <ClCompile Include="input_string_from_file.cpp" />
     <ClCompile Include="remaind_of_div.cpp" />
     <ClCompile Include="rsa.cpp" />
     <ClCompile Include="vigenere.cpp" />
@@ -149,6 +151,8 @@
   <ItemGroup>
     <ClInclude Include="big_rem.h" />
     <ClInclude Include="hill.h" />
+    <ClInclude Include="input_from_file.h" />
+    <ClInclude Include="input_string_from_file.h" />
     <ClInclude Include="remaind_of_div.h" />
     <ClInclude Include="rsa.h" />
     <ClInclude Include="vigenere.h" />

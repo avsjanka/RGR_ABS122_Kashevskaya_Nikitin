@@ -25,7 +25,7 @@ int multi_rev(int a, int b)
 int rsa(const string& message, int p, int q)
 {
     int n = p * q, phi = (p - 1) * (q - 1), e = 37, d = multi_rev(phi, e), numOfLet = 0;
-    string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?><;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?>\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     string encr_mes, decr_mes;
     vector<int> code_of_let, encr_lets;
     cout << "Entered message:" << endl;
@@ -39,10 +39,10 @@ int rsa(const string& message, int p, int q)
     }
     cout << "Encrypted message:" << endl;
     cout << encr_mes << endl;
-    cout << "Do you want to decrypt this? Please, input 0, if you don't want and 1, if you want: ";
-    bool isDecr;
+    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+    int isDecr;
     cin >> isDecr;
-    if (!isDecr)
+    if (isDecr != 1)
     {
         return 0;
     }

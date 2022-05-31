@@ -179,6 +179,70 @@ vector<vector<int>> alg_dop_matr(vector<vector<int>> keyMatrix, int rank)
     }
     return { {} };
 }
+void decrypt_hill(string alphabet, vector<vector<int>> keyMatrix, int numOfMatrix, string encryptMes)
+{
+    int det_K = determinOfMatrix(keyMatrix, numOfMatrix), rev_det;
+    int x = det_rev(det_K, static_cast<int>(alphabet.length()));
+    if (x > 0)
+    {
+        rev_det = x;
+    }
+    else
+    {
+        if (det_K > 0)
+        {
+            rev_det = x + static_cast<int>(alphabet.length());
+        }
+        else
+        {
+            rev_det = -x;
+        }
+    }
+    vector<vector<int>> alg_dop_k = alg_dop_matr(keyMatrix, static_cast<int>(keyMatrix.size()));
+    for (vector<int>& line : alg_dop_k)
+    {
+        for (int& element : line)
+        {
+            element = big_rem(big_rem(element, 1, static_cast<int>(alphabet.length())) * rev_det, 1, static_cast<int>(alphabet.length()));
+        }
+    }
+    for (int i = 0; i < static_cast<int>(alg_dop_k.size()); i++)
+    {
+        for (int j = i; j < static_cast<int>(alg_dop_k.size()); j++)
+        {
+            int glass = alg_dop_k[i][j];
+            alg_dop_k[i][j] = alg_dop_k[j][i];
+            alg_dop_k[j][i] = glass;
+        }
+    }
+    for (vector<int>& line : alg_dop_k)
+    {
+        for (int& element : line)
+        {
+            if (element < 0)
+            {
+                element += static_cast<int>(alphabet.length());
+            }
+        }
+    }
+    string decrypt_mes;
+    vector<int> decr_block;
+    for (char letter : encryptMes)
+    {
+        decr_block.push_back(alphabet.find_first_of(letter));
+        if (decr_block.size() == 3)
+        {
+            decr_block = multiMatrix(alg_dop_k, decr_block, static_cast<int>(alg_dop_k.size()));
+            for (int& num : decr_block)
+            {
+                num = big_rem(num, 1, static_cast<int>(alphabet.length()));
+                decrypt_mes.push_back(alphabet[num]);
+            }
+            decr_block.clear();
+        }
+    }
+    cout << "Decrypted message:" << endl << decrypt_mes << endl;
+}
 int hill(const string& message, const string& key)
 {
     if (key.length() == 0)
@@ -260,77 +324,12 @@ int hill(const string& message, const string& key)
         }
     }
     cout << "Encrypted message:" << endl << encryptMes << endl;
-    cout << "Do you want to decrypt this? Please, input 0, if you don't want and 1, if you want: ";
-    bool isDecr;
+    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+    int isDecr;
     cin >> isDecr;
-    if (!isDecr)
+    if (isDecr == 1)
     {
-        return 0;
+        decrypt_hill(alphabet, keyMatrix, numOfMatrix, encryptMes);
     }
-    else
-    {
-        int det_K = determinOfMatrix(keyMatrix, numOfMatrix), rev_det;
-        int x = det_rev(det_K, static_cast<int>(alphabet.length()));
-        if (x > 0)
-        {
-            rev_det = x;
-        }
-        else
-        {
-            if (det_K > 0)
-            {
-                rev_det = x + static_cast<int>(alphabet.length());
-            }
-            else
-            {
-                rev_det = -x;
-            }
-        }
-        vector<vector<int>> alg_dop_k = alg_dop_matr(keyMatrix, static_cast<int>(keyMatrix.size()));
-        for (vector<int>& line : alg_dop_k)
-        {
-            for (int& element : line)
-            {
-                element = big_rem( big_rem(element, 1, static_cast<int>(alphabet.length()))*rev_det, 1, static_cast<int>(alphabet.length()));
-            }
-        }
-        for (int i = 0; i < static_cast<int>(alg_dop_k.size()); i++)
-        {
-            for (int j = i; j < static_cast<int>(alg_dop_k.size()); j++)
-            {
-                int glass = alg_dop_k[i][j];
-                alg_dop_k[i][j] = alg_dop_k[j][i];
-                alg_dop_k[j][i] = glass;
-            }
-        }
-        for (vector<int>& line : alg_dop_k)
-        {
-            for (int& element : line)
-            {
-                if (element < 0)
-                {
-                    element += static_cast<int>(alphabet.length());
-                }
-            }
-        }
-        string decrypt_mes;
-        vector<int> decr_block;
-        for (char letter : encryptMes)
-        {
-            decr_block.push_back(alphabet.find_first_of(letter));
-            if (decr_block.size() == 3)
-            {
-                i = 0;
-                decr_block = multiMatrix(alg_dop_k, decr_block, static_cast<int>(alg_dop_k.size()));
-                for (int& num : decr_block)
-                {
-                    num = big_rem(num, 1, static_cast<int>(alphabet.length()));
-                    decrypt_mes.push_back(alphabet[num]);
-                }
-                decr_block.clear();
-            }
-        }
-        cout << "Decrypted message:" << endl << decrypt_mes << endl;
-    }
-    return 1;
+    return 0;
 }

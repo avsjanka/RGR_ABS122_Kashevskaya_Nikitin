@@ -131,6 +131,7 @@ int main()
                 }
                 case RSA:
                 {
+                    vector<string> results;
                     string letter;
                     int is_gen = 0;
                     cout << "Do you want to input message? Input 1, if you want: ";
@@ -139,34 +140,27 @@ int main()
                     {
                         letter = input_mes();
                         cout << endl << "Entered message: " << endl << letter << endl;
-                        vector<string> results = rsa(letter, 101, 59);
-                        cout << "Encrypted message:" << endl << results[0] << endl;
-                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-                        int is_decr = 0;
-                        cin >> is_decr;
-                        if (is_decr == 1)
-                        {
-                            cout << "Decrypted message:" << endl << results[1] << endl;
-                        }
+                        results = rsa(letter, 101, 59);
                     }
                     else
                     {
                         string message = input_string();
                         cout << endl << "Entered message: " << endl << message << endl;
-                        vector<string> results = rsa(message, 101, 59);
-                        cout << "Encrypted message:" << endl << results[0] << endl;
-                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-                        int is_decr = 0;
-                        cin >> is_decr;
-                        if (is_decr == 1)
-                        {
-                            cout << "Decrypted message:" << endl << results[1] << endl;
-                        }
+                        results = rsa(message, 101, 59);
+                    }
+                    cout << "Encrypted message:" << endl << results[0] << endl;
+                    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                    int is_decr = 0;
+                    cin >> is_decr;
+                    if (is_decr == 1)
+                    {
+                        cout << "Decrypted message:" << endl << results[1] << endl;
                     }
                     break;
                 }
                 case VIGENERE:
                 {
+                    vector<string> results;
                     string letter;
                     int is_gen = 0;
                     cout << "Do you want to input message? Input 1, if you want: ";
@@ -178,34 +172,27 @@ int main()
                         cin >> key;
                         letter = input_mes();
                         cout << endl << "Entered message: " << endl << letter << endl;
-                        vector<string> results = vigenere(letter, key);
-                        cout << "Encrypted message:" << endl << results[0] << endl;
-                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-                        int is_decr = 0;
-                        cin >> is_decr;
-                        if (is_decr == 1)
-                        {
-                            cout << "Decrypted message:" << endl << results[1] << endl;
-                        }
+                        results = vigenere(letter, key);
                     }
                     else
                     {
                         string message = input_string();
                         cout << endl << "Entered message: " << endl << message << endl;
-                        vector<string> results = vigenere(message, "key");
-                        cout << "Encrypted message:" << endl << results[0] << endl;
-                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-                        int is_decr = 0;
-                        cin >> is_decr;
-                        if (is_decr == 1)
-                        {
-                            cout << "Decrypted message:" << endl << results[1] << endl;
-                        }
+                        results = vigenere(message, "key");
+                    }
+                    cout << "Encrypted message:" << endl << results[0] << endl;
+                    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                    int is_decr = 0;
+                    cin >> is_decr;
+                    if (is_decr == 1)
+                    {
+                        cout << "Decrypted message:" << endl << results[1] << endl;
                     }
                     break;
                 }
                 case HILL:
                 {
+                    vector<string> results;
                     string letter;
                     int is_gen = 0;
                     cout << "Do you want to input message? Input 1, if you want: ";
@@ -215,29 +202,23 @@ int main()
                         string key = "keys123456";
                         cout << "Please, input key without ' ': ";
                         cin >> key;
-                        vector<string> results = hill(input_mes(), key);
-                        cout << "Encrypted message:" << endl << results[0] << endl;
-                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-                        int is_decr = 0;
-                        cin >> is_decr;
-                        if (is_decr == 1)
-                        {
-                            cout << "Decrypted message:" << endl << results[1] << endl;
-                        }
+                        letter = input_mes();
+                        cout << endl << "Entered message: " << endl << letter << endl;
+                        results = hill(letter, key);
                     }
                     else
                     {
                         string message = input_string();
                         cout << endl << "Entered message: " << endl << message << endl;
-                        vector<string> results = hill(message, "keys123456");
-                        cout << "Encrypted message:" << endl << results[0] << endl;
-                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-                        int is_decr = 0;
-                        cin >> is_decr;
-                        if (is_decr == 1)
-                        {
-                            cout << "Decrypted message:" << endl << results[1] << endl;
-                        }
+                        results = hill(message, "keys123456");
+                    }
+                    cout << "Encrypted message:" << endl << results[0] << endl;
+                    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                    int is_decr = 0;
+                    cin >> is_decr;
+                    if (is_decr == 1)
+                    {
+                        cout << "Decrypted message:" << endl << results[1] << endl;
                     }
                     break;
                 }

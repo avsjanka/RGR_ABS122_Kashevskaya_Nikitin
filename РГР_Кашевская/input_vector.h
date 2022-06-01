@@ -5,4 +5,4 @@
 #include <vector>
 #include <Windows.h>
 using namespace std;
-vector<char> input_vector(int number);
+vector<char> input_vector(int num);

@@ -8,33 +8,36 @@ vector<char> input_vector(int number)
     vector<char> letter;
     if (number == 1)//Notebook
     {
-        string alphabet;
+        string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .0123456789,!?;:()-'\n";
         char symbol;
         cout << "Please, write your letter from this alphabet: " << alphabet;
         while (cin.get(symbol))
         {
             letter.push_back(symbol);
         }
+        cin.clear();
     }
     else if (number == 2)//Vernam
     {
-        string alphabet;
         char symbol;
-        cout << "Please, write your letter from this alphabet: " << alphabet;
+        cout << "Please, write your letter: ";
         while (cin.get(symbol))
         {
             letter.push_back(symbol);
         }
+        cin.clear();
     }
     else//Caesar
     {
-        string alphabet;
+        string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         char symbol;
-        cout << "Please, write your letter from this alphabet: " << alphabet;
+        cout << "Please, write your letter from this alphabet: " << alphabet << endl;
         while (cin.get(symbol))
         {
             letter.push_back(symbol);
         }
+        cin.clear();
     }
+    letter.erase(letter.begin());
     return letter;
 }

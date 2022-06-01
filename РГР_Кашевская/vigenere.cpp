@@ -1,13 +1,7 @@
 #include "vigenere.h"
-ostream& operator<<(ostream& stream, vector<char>& f) {//ïåğåãğóçêà îïåğàòîğà âûâîäà âåêòîğà 
-    for (char& item : f) {
-        stream << item;
-    }
-    return stream;
-}
 char encrypt_symb(char letter, char key_letter)
 {
-    string vigLine = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäåæçèéêëìíîïğñòóôõö÷øùúûüışÿ &.,_=+?>\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string vigLine = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäåæçèéêëìíîïğñòóôõö÷øùúûüışÿ .,_=+?><\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     int numOfLet = static_cast<int>(vigLine.find_first_of(letter));
     int numOfKeyLine = static_cast<int>(vigLine.find_first_of(key_letter));
     if (numOfLet == string::npos || numOfKeyLine == string::npos)//Åñëè íå íàøëè êàêóş-òî èç áóêâ, òî øèôğóåì êàê '$'
@@ -19,7 +13,7 @@ char encrypt_symb(char letter, char key_letter)
 }
 char decrypt_symb(char encrletter, char key_letter)
 {
-    string vigLine = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäåæçèéêëìíîïğñòóôõö÷øùúûüışÿ &.,_=+?>\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string vigLine = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäåæçèéêëìíîïğñòóôõö÷øùúûüışÿ .,_=+?><\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     int numOfKeyLine = static_cast<int>(vigLine.find_first_of(key_letter));
     if (numOfKeyLine == string::npos || encrletter == '$')
     {
@@ -29,7 +23,7 @@ char decrypt_symb(char encrletter, char key_letter)
     int numOfLet = static_cast<int>(keyLine.find_first_of(encrletter));
     return vigLine[numOfLet];
 }
-vector<string> vigenere(const string& message, const string& key)
+vector<string> vigenere(const string& message, const string& key, int num)
 {
     string encrypt_mes, full_key, decrypt_mes;
     int i = 0;
@@ -55,6 +49,17 @@ vector<string> vigenere(const string& message, const string& key)
         i++;
     }
     cout << "Encrypted message:" << endl << encrypt_mes << endl;
+    if (num == 7)
+    {
+        i = 0;
+        for (char letter : encrypt_mes)//Äåøèôğîâêà ïîáóêâåííî
+        {
+            decrypt_mes.push_back(decrypt_symb(letter, full_key[i]));
+            i++;
+        }
+        cout << "Decrypted message:" << endl << decrypt_mes << endl;
+        return { encrypt_mes , "" };
+    }
     cout << "Do you want to decrypt this? Please, input 1, if you want: ";
     int isDecr;
     cin >> isDecr;

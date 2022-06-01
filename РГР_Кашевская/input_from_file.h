@@ -5,4 +5,4 @@
 #include <vector>
 #include <fstream>
 using namespace std;
-vector<char> input_from_file(int number);
+vector<char> input_from_file(int num);

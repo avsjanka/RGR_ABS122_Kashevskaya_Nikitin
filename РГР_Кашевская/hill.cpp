@@ -249,17 +249,15 @@ string decrypt_hill(string alphabet, vector<vector<int>> keyMatrix, int numOfMat
             decr_block.clear();
         }
     }
-    cout << "Decrypted message:" << endl << decrypt_mes << endl;
     return decrypt_mes;
 }
-vector<string> hill(const string& message, const string& key, int num)
+vector<string> hill(const string& message, const string& key)
 {
     if (key.length() == 0)
     {
         cout << "Please, enter key with length more than 0." << endl;
         return {};
     }
-    cout << "Entered message:" << endl << message << endl;
     string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?><\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     string keyLast = key, curBlock, encryptMes, newMes = message;
     int numOfMatrix = static_cast<int>(sqrt(key.length())), i = 0, j = 0, numOfBlocks = static_cast<int>((message.length() / numOfMatrix));
@@ -351,20 +349,7 @@ vector<string> hill(const string& message, const string& key, int num)
             }
         }
     }
-    cout << "Encrypted message:" << endl << encryptMes << endl;
-    if (num == 7)
-    {
-        string decr_mes = "";
-        decr_mes = decrypt_hill(alphabet, keyMatrix, numOfMatrix, encryptMes);
-        return { encryptMes, decr_mes };
-    }
-    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-    int isDecr;
     string decr_mes = "";
-    cin >> isDecr;
-    if (isDecr == 1)
-    {
-        decr_mes = decrypt_hill(alphabet, keyMatrix, numOfMatrix, encryptMes);
-    }
+    decr_mes = decrypt_hill(alphabet, keyMatrix, numOfMatrix, encryptMes);
     return { encryptMes, decr_mes };
 }

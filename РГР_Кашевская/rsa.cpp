@@ -15,14 +15,12 @@ int multi_rev(int a, int b)
     }
     return X[1];
 }
-vector<string> rsa(const string& message, int p, int q, int num)
+vector<string> rsa(const string& message, int p, int q)
 {
     int n = p * q, phi = (p - 1) * (q - 1), e = 37, d = multi_rev(phi, e), numOfLet = 0;
     string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ .,_=+?><\n;:/!-*@#^%|`~'(){}[]&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     string encr_mes, decr_mes;
     vector<int> code_of_let, encr_lets;
-    cout << "Entered message:" << endl;
-    cout << message << endl;
     for (int i = 0; i < message.size(); i++)
     {
         if (alphabet.find_first_of(message[i]) != string::npos)
@@ -37,30 +35,9 @@ vector<string> rsa(const string& message, int p, int q, int num)
         encr_lets.push_back(big_rem(numOfLet, e, n));
         encr_mes.push_back(alphabet[remaind_of_div(big_rem(numOfLet, e, n), 1, alphabet.length())]);
     }
-    cout << "Encrypted message:" << endl;
-    cout << encr_mes << endl;
-    if (num == 7)
-    {
-        for (int letter : encr_lets)
-        {
-            decr_mes.push_back(alphabet[big_rem(letter, d, n)]);
-        }
-        cout << "Decrypted message:" << endl;
-        cout << decr_mes << endl;
-        return { encr_mes , decr_mes };
-    }
-    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-    int isDecr;
-    cin >> isDecr;
-    if (isDecr != 1)
-    {
-        return { encr_mes, ""};
-    }
     for (int letter : encr_lets)
     {
         decr_mes.push_back(alphabet[big_rem(letter, d, n)]);
     }
-    cout << "Decrypted message:" << endl;
-    cout << decr_mes << endl;
     return { encr_mes, decr_mes };
 }

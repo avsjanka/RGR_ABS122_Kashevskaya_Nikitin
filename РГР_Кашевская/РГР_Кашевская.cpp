@@ -137,12 +137,31 @@ int main()
                     cin >> is_gen;
                     if (is_gen == 1)
                     {
-                        rsa(input_mes(), 101, 59, number);
+                        letter = input_mes();
+                        cout << endl << "Entered message: " << endl << letter << endl;
+                        vector<string> results = rsa(letter, 101, 59);
+                        cout << "Encrypted message:" << endl << results[0] << endl;
+                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                        int is_decr = 0;
+                        cin >> is_decr;
+                        if (is_decr == 1)
+                        {
+                            cout << "Decrypted message:" << endl << results[1] << endl;
+                        }
                     }
                     else
                     {
                         string message = input_string();
-                        rsa(message, 101, 59, number);
+                        cout << endl << "Entered message: " << endl << message << endl;
+                        vector<string> results = rsa(message, 101, 59);
+                        cout << "Encrypted message:" << endl << results[0] << endl;
+                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                        int is_decr = 0;
+                        cin >> is_decr;
+                        if (is_decr == 1)
+                        {
+                            cout << "Decrypted message:" << endl << results[1] << endl;
+                        }
                     }
                     break;
                 }
@@ -157,12 +176,31 @@ int main()
                         string key = "key";
                         cout << "Please, input key without ' ': ";
                         cin >> key;
-                        vigenere(input_mes(), key, number);
+                        letter = input_mes();
+                        cout << endl << "Entered message: " << endl << letter << endl;
+                        vector<string> results = vigenere(letter, key);
+                        cout << "Encrypted message:" << endl << results[0] << endl;
+                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                        int is_decr = 0;
+                        cin >> is_decr;
+                        if (is_decr == 1)
+                        {
+                            cout << "Decrypted message:" << endl << results[1] << endl;
+                        }
                     }
                     else
                     {
                         string message = input_string();
-                        vigenere(message, "key", number);
+                        cout << endl << "Entered message: " << endl << message << endl;
+                        vector<string> results = vigenere(message, "key");
+                        cout << "Encrypted message:" << endl << results[0] << endl;
+                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                        int is_decr = 0;
+                        cin >> is_decr;
+                        if (is_decr == 1)
+                        {
+                            cout << "Decrypted message:" << endl << results[1] << endl;
+                        }
                     }
                     break;
                 }
@@ -177,12 +215,29 @@ int main()
                         string key = "keys123456";
                         cout << "Please, input key without ' ': ";
                         cin >> key;
-                        hill(input_mes(), key, number);
+                        vector<string> results = hill(input_mes(), key);
+                        cout << "Encrypted message:" << endl << results[0] << endl;
+                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                        int is_decr = 0;
+                        cin >> is_decr;
+                        if (is_decr == 1)
+                        {
+                            cout << "Decrypted message:" << endl << results[1] << endl;
+                        }
                     }
                     else
                     {
                         string message = input_string();
-                        hill(message, "keys123456", number);
+                        cout << endl << "Entered message: " << endl << message << endl;
+                        vector<string> results = hill(message, "keys123456");
+                        cout << "Encrypted message:" << endl << results[0] << endl;
+                        cout << "Do you want to decrypt this? Please, input 1, if you want: ";
+                        int is_decr = 0;
+                        cin >> is_decr;
+                        if (is_decr == 1)
+                        {
+                            cout << "Decrypted message:" << endl << results[1] << endl;
+                        }
                     }
                     break;
                 }
@@ -191,8 +246,8 @@ int main()
                     vector<string> all_crypted, results;
                     string encryrp_letter, str_letter;
                     //Notebook
-                    vector<char> letter = input_from_file('1'), letter_to_decrypt;
-                    cout << endl << "Entered message:" << endl;
+                    vector<char> letter = input_from_file(1), letter_to_decrypt;
+                    cout << endl << "-----------------------------------" << endl << "Entered message:" << endl;
                     print_vector(letter);
                     vector<vector<char>> note_key = notebook_key();
                     letter_to_decrypt = notebook_crypt(letter, note_key);
@@ -203,8 +258,8 @@ int main()
                     cout << endl << "Decrypted message:" << endl;
                     print_vector(result_decrypt);
                     // Vernam
-                    letter = input_from_file('2');
-                    cout << endl << "Entered message:" << endl;
+                    letter = input_from_file(2);
+                    cout << endl << "-----------------------------------" << endl << "Entered message:" << endl;
                     print_vector(letter);
                     vector<int> vern_key = vernam_key((static_cast<int> (letter.size())));
                     letter_to_decrypt = vernam_crypt(letter, vern_key);
@@ -215,8 +270,8 @@ int main()
                     cout << endl << "Decrypted message:" << endl;
                     print_vector(result_decrypt);
                     //Caesar
-                    letter = input_from_file('3');
-                    cout << endl << "Entered message:" << endl;
+                    letter = input_from_file(3);
+                    cout << endl << "-----------------------------------" << endl << "Entered message:" << endl;
                     print_vector(letter);
                     letter_to_decrypt = caesar_crypt(letter);
                     result_decrypt = caesar_decrypt(letter_to_decrypt);
@@ -227,16 +282,22 @@ int main()
                     print_vector(result_decrypt);
                     //str
                     str_letter = input_string();
-                    cout << endl << "Entered message:" << endl << str_letter;
-                    results = rsa(str_letter, 101, 59, number);
+                    cout << endl << "-----------------------------------" << endl << "Entered message:" << endl << str_letter;
+                    results = rsa(str_letter, 101, 59);
+                    cout << endl << "Encrypted message:" << endl << results[0] << endl;
+                    cout << "Decrypted message:" << endl << results[1] << endl;
                     all_crypted.push_back(results[0]);
                     str_letter = input_string();
-                    cout << endl << "Entered message:" << endl << str_letter;
-                    results = vigenere(str_letter, "key", number);
+                    cout << endl << "-----------------------------------" << endl << "Entered message:" << endl << str_letter;
+                    results = vigenere(str_letter, "key");
+                    cout << endl << "Encrypted message:" << endl << results[0] << endl;
+                    cout << "Decrypted message:" << endl << results[1] << endl;
                     all_crypted.push_back(results[0]);
                     str_letter = input_string();
-                    cout << endl << "Entered message:" << endl << str_letter;
-                    results = hill(str_letter, "keys123456", number);
+                    cout << endl << "-----------------------------------" << endl << "Entered message:" << endl << str_letter;
+                    results = hill(str_letter, "keys123456");
+                    cout << endl << "Encrypted message:" << endl << results[0] << endl;
+                    cout << "Decrypted message:" << endl << results[1] << endl;
                     all_crypted.push_back(results[0]);
                     fstream file("РГР.txt");//создать файл в папке проекта
                     ofstream stream_to_txt;

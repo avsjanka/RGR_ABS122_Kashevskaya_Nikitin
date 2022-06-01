@@ -4,4 +4,4 @@
 #include <locale>
 #include <vector>
 using namespace std;
-vector<string> vigenere(const string& message, const string& key, int num);
+vector<string> vigenere(const string& message, const string& key);

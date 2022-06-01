@@ -23,7 +23,7 @@ char decrypt_symb(char encrletter, char key_letter)
     int numOfLet = static_cast<int>(keyLine.find_first_of(encrletter));
     return vigLine[numOfLet];
 }
-vector<string> vigenere(const string& message, const string& key, int num)
+vector<string> vigenere(const string& message, const string& key)
 {
     string encrypt_mes, full_key, decrypt_mes;
     int i = 0;
@@ -32,7 +32,6 @@ vector<string> vigenere(const string& message, const string& key, int num)
         cout << "Please, enter key with length more than 0." << endl;
         return {};
     }
-    cout << "Entered message:" << endl << message << endl;
     while (full_key.size() < message.size())//Формирование полного ключа
     {
         if (i == key.size())
@@ -48,31 +47,11 @@ vector<string> vigenere(const string& message, const string& key, int num)
         encrypt_mes.push_back(encrypt_symb(letter, full_key[i]));
         i++;
     }
-    cout << "Encrypted message:" << endl << encrypt_mes << endl;
-    if (num == 7)
-    {
-        i = 0;
-        for (char letter : encrypt_mes)//Дешифровка побуквенно
-        {
-            decrypt_mes.push_back(decrypt_symb(letter, full_key[i]));
-            i++;
-        }
-        cout << "Decrypted message:" << endl << decrypt_mes << endl;
-        return { encrypt_mes , "" };
-    }
-    cout << "Do you want to decrypt this? Please, input 1, if you want: ";
-    int isDecr;
-    cin >> isDecr;
-    if (isDecr != 1)
-    {
-        return { encrypt_mes , ""};
-    }
     i = 0;
     for (char letter : encrypt_mes)//Дешифровка побуквенно
     {
         decrypt_mes.push_back(decrypt_symb(letter, full_key[i]));
         i++;
     }
-    cout << "Decrypted message:" << endl << decrypt_mes << endl;
     return { encrypt_mes, decrypt_mes };
 }

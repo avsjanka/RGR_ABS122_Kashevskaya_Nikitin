@@ -13,7 +13,25 @@ vector<char> input_vector(int number)
         cout << "Please, write your letter from this alphabet: " << alphabet;
         while (cin.get(symbol))
         {
-            letter.push_back(symbol);
+            if (alphabet.find_first_of(symbol) == string::npos)
+            {
+                if (symbol == '\x1a')
+                {
+                    continue;
+                }
+                else
+                {
+                    cout << "This letter is incorrect!" << endl;
+                    cin.clear();
+                    cin.ignore(std::cin.rdbuf()->in_avail());
+                    letter.erase(letter.begin());
+                    return letter;
+                }
+            }
+            else
+            {
+                letter.push_back(symbol);
+            }
         }
         cin.clear();
     }
@@ -26,18 +44,39 @@ vector<char> input_vector(int number)
             letter.push_back(symbol);
         }
         cin.clear();
+        cin.ignore(std::cin.rdbuf()->in_avail());
     }
     else//Caesar
     {
+        cin.clear();
+        cin.ignore(std::cin.rdbuf()->in_avail());
         string alphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäåæçèéêëìíîïğñòóôõö÷øùúûüışÿ ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         char symbol;
         cout << "Please, write your letter from this alphabet: " << alphabet << endl;
         while (cin.get(symbol))
         {
-            letter.push_back(symbol);
+            if (alphabet.find_first_of(symbol) == string::npos)
+            {
+                if (symbol == '\x1a')
+                {
+                    continue;
+                }
+                else
+                {
+                    cout << "This letter is incorrect!" << endl;
+                    cin.clear();
+                    cin.ignore(std::cin.rdbuf()->in_avail());
+                    letter.erase(letter.begin());
+                    return letter;
+                }
+            }
+            else
+            {
+                letter.push_back(symbol);
+            }
         }
-        cin.clear();
     }
-    letter.erase(letter.begin());
+    cin.clear();
+    cin.ignore(std::cin.rdbuf()->in_avail());
     return letter;
 }

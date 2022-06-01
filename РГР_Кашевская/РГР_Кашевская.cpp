@@ -9,6 +9,7 @@
 #include <fstream>
 #include <Windows.h>
 #include "input_from_file.h"
+#include "input_vector.h"
 #include "print_vector.h"
 #include "vector_to_string.h"
 #include "remaind_of_div.h"
@@ -20,7 +21,6 @@
 #include "vernam_decrypt.h"
 #include "caesar_crypt.h"
 #include "ceasar_decrypt.h"
-#define FILE_NAME "C:\\Users\\пользователь\\Desktop\\РГР.txt"
 using namespace std;
 enum CIPHER { NOTEBOOK = 1, VERNAM , CAESAR , RSA , VIGENERE , HILL,ALL };
 
@@ -40,7 +40,7 @@ int main()
         cout << "4) RSA" << endl;
         cout << "5) VIGENERE" << endl;
         cout << "6) HILL" << endl;
-        cout << "6) All Ciphers by 1 to 6" << endl;
+        cout << "7) All Ciphers by 1 to 6" << endl;
         cout << "Write number of cipher ";
         cin >> number;
         SetConsoleCP(1251);
@@ -51,56 +51,65 @@ int main()
             {
                 vector<char> letter;
                 int is_gen = 0;
+                cout << "Do you want to input message? Input 1, if you want: ";
                 cin >> is_gen;
                 if (is_gen == 1)   //Вводим сообщение
-                {
-                    cout << "Write your letter: " << endl;
-                    letter ;
-                }
+                    letter = input_vector(number);
                 else
                     letter = input_from_file(number);
                 vector<vector<char>> key = notebook_key();
                 vector <char> result = notebook_crypt(letter, key);
                 print_vector(result);
-                vector <char> result_encrypt = notebook_decrypt(result, key);
-                print_vector(result_encrypt);
+                cout << "\nDo you want to decrypt message? Input 1, if you want: ";
+                cin >> is_gen;
+                if (is_gen == 1)
+                {
+                    vector <char> result_encrypt = notebook_decrypt(result, key);
+                    print_vector(result_encrypt);
+                }
                 break;
             }
             case VERNAM:
             {
                 vector<char> letter;
                 int is_gen = 0;
+                cout << "Do you want to input message? Input 1, if you want: ";
                 cin >> is_gen;
                 if (is_gen == 1)   //Вводим сообщение
-                {
-                    cout << "Write your letter: " << endl;
-                    letter;
-                }
+                    letter = input_vector(number);
                 else
                     letter = input_from_file(number);
                 vector <int> key = vernam_key((static_cast<int> (letter.size())));
                 vector<char> result = vernam_crypt(letter, key);
                 print_vector(result );
-                vector <char> decrypt_result = vernam_decrypt(result, key);
-                print_vector(decrypt_result );
+                cout << "\nDo you want to decrypt message? Input 1, if you want: ";
+                cin >> is_gen;
+                if (is_gen == 1)
+                {
+                    vector <char> decrypt_result = vernam_decrypt(result, key);
+                    print_vector(decrypt_result);
+                }
                 break;
             }
             case CAESAR:
             {
                 vector<char> letter;
                 int is_gen = 0;
+                cout << "Do you want to input message? Input 1, if you want: ";
                 cin >> is_gen;
                 if (is_gen == 1)   //Вводим сообщение
-                {
-                    cout << "Write your letter: " << endl;
-                    letter;
-                }
+                    letter = input_vector(number);
                 else
                     letter = input_from_file(number);
                 vector<char> result = caesar_crypt(letter);
                 print_vector(result);
-                vector<char> decrypt_result = caesar_decrypt(result);
-                print_vector(decrypt_result);
+                cout << "\nDo you want to decrypt message? Input 1, if you want: ";
+                cin >> is_gen;
+                if (is_gen == 1)
+                {
+                    vector<char> decrypt_result = caesar_decrypt(result);
+                    print_vector(decrypt_result);
+                }
                 break;
             }
             case RSA:

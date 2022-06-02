@@ -1,4 +1,5 @@
-﻿
+﻿#define NOMINMAX
+
 #include <iostream>
 #include <random>
 #include <algorithm>
@@ -16,6 +17,8 @@
 #include "rsa.h"
 
 #include "input_from_file.h"
+#include "input_messtr.h"
+#include "input_string_from_file.h"
 #include "input_vector.h"
 #include "print_vector.h"
 #include "vector_to_string.h"
@@ -29,7 +32,7 @@
 #include "vernam_decrypt.h"
 #include "caesar_crypt.h"
 #include "ceasar_decrypt.h"
-#define NOMINMAX
+
 using namespace std;
 enum CIPHER { NOTEBOOK = 1, VERNAM, CAESAR, RSA, VIGENERE, HILL, ALL };
 

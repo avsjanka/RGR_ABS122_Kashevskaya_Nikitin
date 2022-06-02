@@ -142,6 +142,7 @@
     <ClCompile Include="caesar_crypt.cpp" />
     <ClCompile Include="ceasar_decrypt.cpp" />
     <ClCompile Include="input_from_file.cpp" />
+    <ClCompile Include="input_messtr.cpp" />
     <ClCompile Include="input_string_from_file.cpp" />
     <ClCompile Include="notebook_crypt.cpp" />
     <ClCompile Include="notebook_decrypt.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="caesar_crypt.h" />
     <ClInclude Include="ceasar_decrypt.h" />
     <ClInclude Include="input_from_file.h" />
+    <ClInclude Include="input_messtr.h" />
     <ClInclude Include="input_string_from_file.h" />
     <ClInclude Include="notebook_crypt.h" />
     <ClInclude Include="notebook_decrypt.h" />

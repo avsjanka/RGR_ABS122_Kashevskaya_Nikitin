@@ -57,6 +57,9 @@
     <ClCompile Include="vector_to_string.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="input_messtr.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="caesar_crypt.h">
@@ -96,6 +99,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="vector_to_string.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="input_messtr.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

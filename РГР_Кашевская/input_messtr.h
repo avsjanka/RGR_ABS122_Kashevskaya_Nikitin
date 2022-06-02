@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
-#include <vector>
 #include <string>
+#include <locale>
+#include <Windows.h>
 using namespace std;
-string vector_to_string(vector<char> letter);
+string input_mes();

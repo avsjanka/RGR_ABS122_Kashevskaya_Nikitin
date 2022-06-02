@@ -1,6 +1,6 @@
 #include "vector_to_string.h"
 
-string vector_to_string(vector<char>& letter)
+string vector_to_string(vector<char> letter)
 {
     string str;
     for (char symbol : letter)

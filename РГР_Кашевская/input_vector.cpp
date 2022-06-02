@@ -1,4 +1,4 @@
-#include "input_vector.h"
+Ôªø#include "input_vector.h"
 
 vector<char> input_vector(int number)
 {
@@ -8,34 +8,75 @@ vector<char> input_vector(int number)
     vector<char> letter;
     if (number == 1)//Notebook
     {
+        cin.clear();
+        cin.ignore(std::cin.rdbuf()->in_avail());
         string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .0123456789,!?;:()-'\n";
         char symbol;
         cout << "Please, write your letter from this alphabet: " << alphabet;
         while (cin.get(symbol))
         {
-            letter.push_back(symbol);
+            if (alphabet.find_first_of(symbol) == string::npos)
+            {
+                if (symbol == '\x1a')
+                {
+                    continue;
+                }
+                else
+                {
+                    cout << "This letter is incorrect!" << endl;
+                    cin.clear();
+                    cin.ignore(std::cin.rdbuf()->in_avail());
+                    return letter;
+                }
+            }
+            else
+            {
+                letter.push_back(symbol);
+            }
         }
         cin.clear();
     }
     else if (number == 2)//Vernam
     {
         char symbol;
+        cout << "Please, write your letter: ";
         while (cin.get(symbol))
         {
             letter.push_back(symbol);
         }
         cin.clear();
+        cin.ignore(std::cin.rdbuf()->in_avail());
     }
     else//Caesar
     {
-        string alphabet = "¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        cin.clear();
+        cin.ignore(std::cin.rdbuf()->in_avail());
+        string alphabet = "–ê–ë–í–ì–î–ï–ñ–ó–ò–ô–ö–õ–ú–ù–û–ü–†–°–¢–£–§–•–¶–ß–®–©–™–´–¨–≠–Æ–Ø–∞–±–≤–≥–¥–µ–∂–∑–∏–π–∫–ª–º–Ω–æ–ø—Ä—Å—Ç—É—Ñ—Ö—Ü—á—à—â—ä—ã—å—ç—é—è ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         char symbol;
         cout << "Please, write your letter from this alphabet: " << alphabet << endl;
         while (cin.get(symbol))
         {
-            letter.push_back(symbol);
+            if (alphabet.find_first_of(symbol) == string::npos)
+            {
+                if (symbol == '\x1a')
+                {
+                    continue;
+                }
+                else
+                {
+                    cout << "This letter is incorrect!" << endl;
+                    cin.clear();
+                    cin.ignore(std::cin.rdbuf()->in_avail());
+                    return letter;
+                }
+            }
+            else
+            {
+                letter.push_back(symbol);
+            }
         }
-        cin.clear();
     }
+    cin.clear();
+    cin.ignore(std::cin.rdbuf()->in_avail());
     return letter;
 }

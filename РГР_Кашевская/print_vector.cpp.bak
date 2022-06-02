@@ -8,5 +8,5 @@ ostream& operator << (ostream& os, vector <char>& letter)
 }
 void print_vector(vector<char> letter)
 {
-    cout << letter <<'\n';
+    cout << letter;
 }

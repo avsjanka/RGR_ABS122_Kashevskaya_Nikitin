@@ -16,6 +16,7 @@
 #include "hill.h"
 #include "rsa.h"
 
+#include "your_file.h"
 #include "input_from_file.h"
 #include "input_messtr.h"
 #include "input_string_from_file.h"
@@ -75,19 +76,36 @@ int main()
 					case NOTEBOOK:
 					{
 						vector<char> letter;
+						string file_name;
 						int is_gen = 0;
 						cout << "Do you want to input message? Input 1, if you want: ";
 						cin >> is_gen;
 						if (is_gen == 1)   //Вводим сообщение
 							letter = input_vector(number);
 						else
-							letter = input_from_file(number);
+						{
+							int is_file = 0;
+							cout << "Do you want to input message from your file? Input 1, if you want: ";
+							cin >> is_file;
+							if (is_file == 1)
+							{
+								letter = your_file(file_name);
+							}
+							else
+							{
+								letter = input_from_file(number);
+							}
+						}
 						cout << "Entered message:" << endl;
 						print_vector(letter);
 						vector<vector<char>> key = notebook_key();
 						vector <char> result = notebook_crypt(letter, key);
 						cout << endl << "Encrypted message:" << endl;
 						print_vector(result);
+						ofstream stream_to_txt;
+						stream_to_txt.open(file_name);
+						stream_to_txt << vector_to_string(result);
+						stream_to_txt.close();
 						cout << "\nDo you want to decrypt message? Input 1, if you want: ";
 						cin >> is_gen;
 						if (is_gen == 1)
@@ -95,25 +113,46 @@ int main()
 							vector <char> result_encrypt = notebook_decrypt(result, key);
 							cout << "Decrypted message:" << endl;
 							print_vector(result_encrypt);
+							ofstream stream_to_txt;
+							stream_to_txt.open(file_name);
+							stream_to_txt << vector_to_string(result_encrypt);
+							stream_to_txt.close();
 						}
 						break;
 					}
 					case VERNAM:
 					{
 						vector<char> letter;
+						string file_name;
 						int is_gen = 0;
 						cout << "Do you want to input message? Input 1, if you want: ";
 						cin >> is_gen;
 						if (is_gen == 1)   //Вводим сообщение
 							letter = input_vector(number);
 						else
-							letter = input_from_file(number);
+						{
+							int is_file = 0;
+							cout << "Do you want to input message from your file? Input 1, if you want: ";
+							cin >> is_file;
+							if (is_file == 1)
+							{
+								letter = your_file(file_name);
+							}
+							else
+							{
+								letter = input_from_file(number);
+							}
+						}
 						cout << "Entered message:" << endl;
 						print_vector(letter);
 						vector <int> key = vernam_key((static_cast<int> (letter.size())));
 						vector<char> result = vernam_crypt(letter, key);
 						cout << endl << "Encrypted message:" << endl;
 						print_vector(result);
+						ofstream stream_to_txt;
+						stream_to_txt.open(file_name);
+						stream_to_txt << vector_to_string(result);
+						stream_to_txt.close();
 						cout << "\nDo you want to decrypt message? Input 1, if you want: ";
 						cin >> is_gen;
 						if (is_gen == 1)
@@ -121,24 +160,45 @@ int main()
 							vector <char> decrypt_result = vernam_decrypt(result, key);
 							cout << "Decrypted message:" << endl;
 							print_vector(decrypt_result);
+							ofstream stream_to_txt;
+							stream_to_txt.open(file_name);
+							stream_to_txt << vector_to_string(decrypt_result);
+							stream_to_txt.close();
 						}
 						break;
 					}
 					case CAESAR:
 					{
 						vector<char> letter;
+						string file_name;
 						int is_gen = 0;
 						cout << "Do you want to input message? Input 1, if you want: ";
 						cin >> is_gen;
 						if (is_gen == 1)   //Вводим сообщение
 							letter = input_vector(number);
 						else
-							letter = input_from_file(number);
+						{
+							int is_file = 0;
+							cout << "Do you want to input message from your file? Input 1, if you want: ";
+							cin >> is_file;
+							if (is_file == 1)
+							{
+								letter = your_file(file_name);
+							}
+							else
+							{
+								letter = input_from_file(number);
+							}
+						}
 						cout << "Entered message:" << endl;
 						print_vector(letter);
 						vector<char> result = caesar_crypt(letter);
 						cout << endl << "Encrypted message:" << endl;
 						print_vector(result);
+						ofstream stream_to_txt;
+						stream_to_txt.open(file_name);
+						stream_to_txt << vector_to_string(result);
+						stream_to_txt.close();
 						cout << "\nDo you want to decrypt message? Input 1, if you want: ";
 						cin >> is_gen;
 						if (is_gen == 1)
@@ -146,13 +206,17 @@ int main()
 							vector<char> decrypt_result = caesar_decrypt(result);
 							cout << "Decrypted message:" << endl;
 							print_vector(decrypt_result);
+							ofstream stream_to_txt;
+							stream_to_txt.open(file_name);
+							stream_to_txt << vector_to_string(decrypt_result);
+							stream_to_txt.close();
 						}
 						break;
 					}
 					case RSA:
 					{
 						vector<string> results;
-						string letter;
+						string letter, file_name;
 						int is_gen = 0;
 						cout << "Do you want to input message? Input 1, if you want: ";
 						cin >> is_gen;
@@ -164,9 +228,25 @@ int main()
 						}
 						else
 						{
-							string message = input_string();
-							cout << endl << "Entered message: " << endl << message << endl;
-							results = rsa(message, 101, 59);
+							int is_file = 0;
+							cout << "Do you want to input message from your file? Input 1, if you want: ";
+							cin >> is_file;
+							if (is_file == 1)
+							{
+								string message = vector_to_string(your_file(file_name));
+								cout << endl << "Entered message: " << endl << message << endl;
+								results = rsa(message, 101, 59);
+								ofstream stream_to_txt;
+								stream_to_txt.open(file_name);
+								stream_to_txt << results[0];
+								stream_to_txt.close();
+							}
+							else
+							{
+								string message = input_string();
+								cout << endl << "Entered message: " << endl << message << endl;
+								results = rsa(message, 101, 59);
+							}
 						}
 						cout << "Encrypted message:" << endl << results[0] << endl;
 						cout << "Do you want to decrypt this? Please, input 1, if you want: ";
@@ -175,13 +255,17 @@ int main()
 						if (is_decr == 1)
 						{
 							cout << "Decrypted message:" << endl << results[1] << endl;
+							ofstream stream_to_txt;
+							stream_to_txt.open(file_name);
+							stream_to_txt << results[1];
+							stream_to_txt.close();
 						}
 						break;
 					}
 					case VIGENERE:
 					{
 						vector<string> results;
-						string letter;
+						string letter, file_name;
 						int is_gen = 0;
 						cout << "Do you want to input message? Input 1, if you want: ";
 						cin >> is_gen;
@@ -196,9 +280,25 @@ int main()
 						}
 						else
 						{
-							string message = input_string();
-							cout << endl << "Entered message: " << endl << message << endl;
-							results = vigenere(message, "key");
+							int is_file = 0;
+							cout << "Do you want to input message from your file? Input 1, if you want: ";
+							cin >> is_file;
+							if (is_file == 1)
+							{
+								string message = vector_to_string(your_file(file_name));
+								cout << endl << "Entered message: " << endl << message << endl;
+								results = vigenere(message, "key");
+								ofstream stream_to_txt;
+								stream_to_txt.open(file_name);
+								stream_to_txt << results[0];
+								stream_to_txt.close();
+							}
+							else
+							{
+								string message = input_string();
+								cout << endl << "Entered message: " << endl << message << endl;
+								results = vigenere(message, "key");
+							}
 						}
 						cout << "Encrypted message:" << endl << results[0] << endl;
 						cout << "Do you want to decrypt this? Please, input 1, if you want: ";
@@ -207,13 +307,17 @@ int main()
 						if (is_decr == 1)
 						{
 							cout << "Decrypted message:" << endl << results[1] << endl;
+							ofstream stream_to_txt;
+							stream_to_txt.open(file_name);
+							stream_to_txt << results[1];
+							stream_to_txt.close();
 						}
 						break;
 					}
 					case HILL:
 					{
 						vector<string> results;
-						string letter;
+						string letter, file_name;
 						int is_gen = 0;
 						cout << "Do you want to input message? Input 1, if you want: ";
 						cin >> is_gen;
@@ -228,9 +332,25 @@ int main()
 						}
 						else
 						{
-							string message = input_string();
-							cout << endl << "Entered message: " << endl << message << endl;
-							results = hill(message, "keys123456");
+							int is_file = 0;
+							cout << "Do you want to input message from your file? Input 1, if you want: ";
+							cin >> is_file;
+							if (is_file == 1)
+							{
+								string message = vector_to_string(your_file(file_name));
+								cout << endl << "Entered message: " << endl << message << endl;
+								results = hill(message, "keys123456");
+								ofstream stream_to_txt;
+								stream_to_txt.open(file_name);
+								stream_to_txt << results[0];
+								stream_to_txt.close();
+							}
+							else
+							{
+								string message = input_string();
+								cout << endl << "Entered message: " << endl << message << endl;
+								results = hill(message, "keys123456");
+							}
 						}
 						cout << "Encrypted message:" << endl << results[0] << endl;
 						cout << "Do you want to decrypt this? Please, input 1, if you want: ";
@@ -239,6 +359,10 @@ int main()
 						if (is_decr == 1)
 						{
 							cout << "Decrypted message:" << endl << results[1] << endl;
+							ofstream stream_to_txt;
+							stream_to_txt.open(file_name);
+							stream_to_txt << results[1];
+							stream_to_txt.close();
 						}
 						break;
 					}

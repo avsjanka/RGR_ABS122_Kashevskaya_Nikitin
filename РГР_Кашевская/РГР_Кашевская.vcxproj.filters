@@ -75,6 +75,9 @@
     <ClCompile Include="big_rem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="your_file.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="caesar_crypt.h">
@@ -132,6 +135,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="vigenere.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="your_file.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

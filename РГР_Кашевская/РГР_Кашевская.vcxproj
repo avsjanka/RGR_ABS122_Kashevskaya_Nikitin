@@ -158,6 +158,7 @@
     <ClCompile Include="vernam_decrypt.cpp" />
     <ClCompile Include="vernam_key.cpp" />
     <ClCompile Include="vigenere.cpp" />
+    <ClCompile Include="your_file.cpp" />
     <ClCompile Include="РГР_Кашевская.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +181,7 @@
     <ClInclude Include="vernam_decrypt.h" />
     <ClInclude Include="vernam_key.h" />
     <ClInclude Include="vigenere.h" />
+    <ClInclude Include="your_file.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

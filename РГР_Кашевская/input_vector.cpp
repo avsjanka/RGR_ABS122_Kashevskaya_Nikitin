@@ -39,6 +39,8 @@ vector<char> input_vector(int number)
     else if (number == 2)//Vernam
     {
         char symbol;
+        cin.clear();
+        cin.ignore(std::cin.rdbuf()->in_avail());
         cout << "Please, write your letter: ";
         while (cin.get(symbol))
         {

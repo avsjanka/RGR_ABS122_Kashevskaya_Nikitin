@@ -77,77 +77,77 @@ int alg_dop(vector<vector<int>> keyMatrix, int line, int col)
 {
     switch (line)
     {
+    case 0:
+    {
+        switch (col)
+        {
         case 0:
         {
-            switch (col)
-            {
-            case 0:
-            {
-                return keyMatrix[1][1] * keyMatrix[2][2] - keyMatrix[2][1] * keyMatrix[1][2];
-                break;
-            }
-            case 1 :
-            {
-                return keyMatrix[2][0] * keyMatrix[1][2] - keyMatrix[1][0] * keyMatrix[2][2];
-                break;
-            }
-            case 2:
-            {
-                return keyMatrix[1][0] * keyMatrix[2][1] - keyMatrix[2][0] * keyMatrix[1][1];
-                break;
-            }
-            default:
-                break;
-            }
+            return keyMatrix[1][1] * keyMatrix[2][2] - keyMatrix[2][1] * keyMatrix[1][2];
+            break;
         }
         case 1:
         {
-            switch (col)
-            {
-            case 0:
-            {
-                return keyMatrix[0][2] * keyMatrix[2][1] - keyMatrix[0][1] * keyMatrix[2][2];
-                break;
-            }
-            case 1:
-            {
-                return keyMatrix[0][0] * keyMatrix[2][2] - keyMatrix[2][0] * keyMatrix[0][2];
-                break;
-            }
-            case 2:
-            {
-                return keyMatrix[0][1] * keyMatrix[2][0] - keyMatrix[0][0] * keyMatrix[2][1];
-                break;
-            }
-            default:
-                break;
-            }
+            return keyMatrix[2][0] * keyMatrix[1][2] - keyMatrix[1][0] * keyMatrix[2][2];
+            break;
         }
         case 2:
         {
-            switch (col)
-            {
-            case 0:
-            {
-                return keyMatrix[0][1] * keyMatrix[1][2] - keyMatrix[1][1] * keyMatrix[0][2];
-                break;
-            }
-            case 1:
-            {
-                return keyMatrix[1][0] * keyMatrix[0][2] - keyMatrix[0][0] * keyMatrix[1][2];
-                break;
-            }
-            case 2:
-            {
-                return keyMatrix[0][0] * keyMatrix[1][1] - keyMatrix[0][1] * keyMatrix[1][0];
-                break;
-            }
-            default:
-                break;
-            }
+            return keyMatrix[1][0] * keyMatrix[2][1] - keyMatrix[2][0] * keyMatrix[1][1];
+            break;
         }
         default:
             break;
+        }
+    }
+    case 1:
+    {
+        switch (col)
+        {
+        case 0:
+        {
+            return keyMatrix[0][2] * keyMatrix[2][1] - keyMatrix[0][1] * keyMatrix[2][2];
+            break;
+        }
+        case 1:
+        {
+            return keyMatrix[0][0] * keyMatrix[2][2] - keyMatrix[2][0] * keyMatrix[0][2];
+            break;
+        }
+        case 2:
+        {
+            return keyMatrix[0][1] * keyMatrix[2][0] - keyMatrix[0][0] * keyMatrix[2][1];
+            break;
+        }
+        default:
+            break;
+        }
+    }
+    case 2:
+    {
+        switch (col)
+        {
+        case 0:
+        {
+            return keyMatrix[0][1] * keyMatrix[1][2] - keyMatrix[1][1] * keyMatrix[0][2];
+            break;
+        }
+        case 1:
+        {
+            return keyMatrix[1][0] * keyMatrix[0][2] - keyMatrix[0][0] * keyMatrix[1][2];
+            break;
+        }
+        case 2:
+        {
+            return keyMatrix[0][0] * keyMatrix[1][1] - keyMatrix[0][1] * keyMatrix[1][0];
+            break;
+        }
+        default:
+            break;
+        }
+    }
+    default:
+        break;
     }
     return 0;
 }
@@ -160,8 +160,8 @@ vector<vector<int>> alg_dop_matr(vector<vector<int>> keyMatrix, int rank)
     else if (rank == 2)
     {
         vector<vector<int>> new_matrix;
-        new_matrix.push_back({ keyMatrix[1][1], -keyMatrix[0][1] });
-        new_matrix.push_back({ -keyMatrix[1][0], keyMatrix[0][0] });
+        new_matrix.push_back({ keyMatrix[1][1], -keyMatrix[1][0] });
+        new_matrix.push_back({ -keyMatrix[0][1], keyMatrix[0][0] });
         return new_matrix;
     }
     else if (rank == 3)
@@ -351,5 +351,10 @@ vector<string> hill(const string& message, const string& key)
     }
     string decr_mes = "";
     decr_mes = decrypt_hill(alphabet, keyMatrix, numOfMatrix, encryptMes);
+    if (keyMatrix.size() == 1)
+    {
+        cout << "You can't decrypt message with this key!" << endl;
+        decr_mes = "";
+    }
     return { encryptMes, decr_mes };
 }

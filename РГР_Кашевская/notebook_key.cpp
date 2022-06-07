@@ -13,7 +13,7 @@ vector<vector<char>> notebook_key()
             else
                 break;
             k++;
-            if (k == 75)
+            if (k == 74)
                 k = 0;
         }
     }
